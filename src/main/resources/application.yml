@@ -1,0 +1,50 @@
+# https://www.linkedin.com/pulse/chaos-engineering-introduction-using-spring-boot-chellimuthu
+
+# Connection details
+#spring.redis.host=localhost
+#spring.redis.port=6379
+#spring.cache.type=redis
+spring:
+  profiles:
+    active: chaos-monkey
+
+chaos:
+  monkey:
+    enabled: true
+    assaults:
+      exceptionsActive: true
+      exception:
+        type: io.lettuce.core.RedisCommandTimeoutException
+        arguments:
+          className: java.lang.string
+          value: connection timeout
+
+      killApplicationActive: false
+      latencyActive: false
+      latencyRangeStart: 5000
+      latencyRangeEnd: 8000
+      level: 3
+    watcher:
+      component: false
+      controller: false
+      repository: false
+      rest-controller: true
+      service: false
+
+
+management:
+  endpoint:
+    chaosmonkey:
+      enabled: true
+
+
+  endpoints:
+    web:
+      exposure:
+        include: chaosmonkey
+
+
+
+
+
+
