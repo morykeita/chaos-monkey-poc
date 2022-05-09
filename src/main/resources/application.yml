@@ -46,5 +46,12 @@ management:
 
 
 
-
+resilience4j:
+  retry:
+    instances:
+      redisException:
+        maxRetryAttempts: 3
+        waitDuration: 2s
+        retryExceptions:
+          - io.lettuce.core.RedisException
 

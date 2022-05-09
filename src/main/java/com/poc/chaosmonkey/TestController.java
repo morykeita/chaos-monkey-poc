@@ -1,5 +1,6 @@
 package com.poc.chaosmonkey;
 
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
@@ -23,15 +24,16 @@ public class TestController {
     @Autowired
     private TestService testService;
 
-//        @GetMapping
-//    public String saveToken(){
-//        String token = UUID.randomUUID().toString();
-//        tokenCacheManager.getCache(TOKEN_CACHE_NAME).put(token,token);
-//        return token;
-//    }
-
     @GetMapping
-    public List<String> hello(){
-        return Arrays.asList("Red","Blue","Green");
+    @Retry(name = "throwingException")
+    public String saveToken(){
+        String token = UUID.randomUUID().toString();
+        tokenCacheManager.getCache(TOKEN_CACHE_NAME).put(token,token);
+        return token;
     }
+
+//    @GetMapping
+//    public List<String> hello(){
+//        return Arrays.asList("Red","Blue","Green");
+//    }
 }
