@@ -15,26 +15,25 @@ import java.net.ConnectException;
 @ControllerAdvice
 public class CustomExceptionHandler {
 
-    @ExceptionHandler({PoolException.class})
-    public ResponseEntity handle(PoolException e){
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Redis PoolException exception");
-    }
-
-    @ExceptionHandler({ConnectException.class})
-    public ResponseEntity handle(ConnectException e){
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("ConnectException exception");
-    }
+//    @ExceptionHandler({PoolException.class})
+//    public ResponseEntity handle(PoolException e){
+//        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Redis PoolException exception");
+//    }
+//
+//    @ExceptionHandler({ConnectException.class})
+//    public ResponseEntity handle(ConnectException e){
+//        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("ConnectException exception");
+//    }
 
 
     @ExceptionHandler({RedisException.class})
     public ResponseEntity handle(RedisException e){
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("RedisException exception");
     }
-
-    @ExceptionHandler({RedisCommandTimeoutException.class})
-    public ResponseEntity handle(RedisCommandTimeoutException e){
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("RedisCommandTimeoutException exception");
-    }
+//
+//    @ExceptionHandler({RedisCommandTimeoutException.class})
+//    public ResponseEntity handle(RedisCommandTimeoutException e){
+//        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("RedisCommandTimeoutException exception");
+//    }
 }
 
-//java.net.ConnectException

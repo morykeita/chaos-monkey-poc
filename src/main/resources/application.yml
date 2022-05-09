@@ -16,7 +16,7 @@ chaos:
       exception:
         type: io.lettuce.core.RedisCommandTimeoutException
         arguments:
-          className: java.lang.string
+          className: java.lang.Throwable
           value: connection timeout
 
       killApplicationActive: false
